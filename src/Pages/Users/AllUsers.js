@@ -114,7 +114,12 @@ const AllUsers = () => {
           </div>
 
           {users.map((user) => (
-            <HorizontalCard key={user.id} title={user.fullname}>
+            <HorizontalCard
+              key={user.id}
+              {...user}
+              title={user.fullname}
+              image={false}
+            >
               <DataButton
                 sm={`btn-sm`}
                 id={user.id}
