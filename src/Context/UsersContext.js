@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import useDataFilter from "../hook/DataFilter";
+import { ToastContainer, toast } from "react-toastify";
 
 export const UserContext = createContext();
 const UserContextProvider = ({ children }) => {
@@ -68,6 +69,14 @@ const UserContextProvider = ({ children }) => {
       };
       
     setUsers((prevUsers) => [...prevUsers, newUser]);
+    toast.success("New User Added");
+
+    
+  };
+
+  const handleDelete = (id) => {
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+    toast.warning("User deleted successfully!")
   };
 
   const contextValue = {
@@ -86,6 +95,9 @@ const UserContextProvider = ({ children }) => {
     setGender,
     email,
     setEmail,
+    handleDelete,
+    toastContainer: <ToastContainer />,
+    toast,
   };
 
   return (

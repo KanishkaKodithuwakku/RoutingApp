@@ -1,25 +1,25 @@
 import React from 'react'
 
-const DataButton = ({ btnText, btnType, type, handleOnclick, exclass}) => { 
-
-    return (
-      <>
-        <div className="col-auto">
-          <button
-            type={type}
-            className={`btn btn-${btnType} mb-3 ${exclass}`}
-            onClick={(e) => handleOnclick(e)}
-          >
-            {btnText}
-          </button>
-        </div>
-      </>
-    );
-}
+const DataButton = ({ id, btnText, btnType, type, handleOnclick, exclass,sm }) => {
+  return (
+    <>
+      <div className="col-auto">
+        <button
+          type={type}
+          className={`btn btn-${btnType} mb-3 ${exclass} ${sm}`}
+          onClick={() => handleOnclick(id)}
+        >
+          {btnText}
+        </button>
+      </div>
+    </>
+  );
+};
 
 DataButton.defaultProps = {
   btnType: "primary",
   type: "submit",
+  sm:'',
   handleOnclick: () => {},
 };
 

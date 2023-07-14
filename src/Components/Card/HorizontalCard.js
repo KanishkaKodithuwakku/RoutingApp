@@ -1,7 +1,7 @@
 import React from "react";
 import avatar from "./avatar.jpg";
 
-const HorizontalCard = ({ title }) => {
+const HorizontalCard = ({ title ,children}) => {
   return (
     <>
       <div className="card mb-3" style={{ maxWidth: `540px` }}>
@@ -24,6 +24,7 @@ const HorizontalCard = ({ title }) => {
                   Last updated 3 mins ago
                 </small>
               </p>
+              {children}
             </div>
           </div>
         </div>

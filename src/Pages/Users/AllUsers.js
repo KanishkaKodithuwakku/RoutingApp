@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext,useEffect} from 'react'
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../Context/UsersContext';
 import HorizontalCard from '../../Components/Card/HorizontalCard';
@@ -7,7 +7,6 @@ import DataSelect from '../../Components/Form/DataSelect';
 import DataButton from '../../Components/Button/DataButton';
 import DataInput from '../../Components/Form/DataInput';
 import DataForm from '../../Components/Form/DataForm';
-
 
 const AllUsers = () => { 
 
@@ -25,7 +24,10 @@ const AllUsers = () => {
     zipcode,
     setZipcode,
     gender,
-    setGender
+    setGender,
+    handleDelete,
+    toastContainer,
+    toast
   } = useContext(UserContext);
 
     const history = useHistory();
@@ -39,9 +41,16 @@ const AllUsers = () => {
     const handleLogout = () => { 
         localStorage.clear();
         history.push('/login')
+  }
+  
+  useEffect(() => {
+    if (users.length === 0) {
+      toast.error("No user. Please create a new user");
     }
+  }, [users]);
       return (
         <>
+          {toastContainer}
           <h3 className="mt-5">Users</h3>
           <p onClick={handleLogout} style={{ cursor: "pointer" }}>
             Hello {loginStatus && storedUsername.toLocaleLowerCase()} | Logout
@@ -49,7 +58,10 @@ const AllUsers = () => {
 
           <div className="row">
             <div className="col-sm-12">
-              <DataForm handleSubmit={handleformSubmit}>
+              <DataForm
+                handleSubmit={handleformSubmit}
+                FormTitle={`Add New User`}
+              >
                 <DataInput
                   labelText={`Full Name`}
                   plaseHolder={`Full Name`}
@@ -102,7 +114,16 @@ const AllUsers = () => {
           </div>
 
           {users.map((user) => (
-            <HorizontalCard key={user.id} title={user.fullname} />
+            <HorizontalCard key={user.id} title={user.fullname}>
+              <DataButton
+                sm={`btn-sm`}
+                id={user.id}
+                type={`button`}
+                btnText={`Delete`}
+                btnType={`danger`}
+                handleOnclick={() => handleDelete(user.id)}
+              />
+            </HorizontalCard>
           ))}
         </>
       );

@@ -6,7 +6,7 @@ const DataForm = ({ FormTitle,children, handleSubmit }) => {
    
   return (
     <>
-      <h1>{FormTitle}</h1>
+      <h3>{FormTitle}</h3>
       <form className="row g-3" onSubmit={handleSubmit}>
         {children}
       </form>
