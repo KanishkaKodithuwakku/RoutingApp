@@ -1,12 +1,13 @@
 import React, { useContext} from 'react'
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../Context/UsersContext';
+import HorizontalCard from '../../Components/Card/HorizontalCard';
+import SearchBar from '../../Components/Form/SearchBar';
 
 
 const AllUsers = () => { 
 
-  const {users} = useContext(UserContext);
-
+  const { users, handleSearch, searchText } = useContext(UserContext);
 
     const history = useHistory();
     const storedUsername = localStorage.getItem("username");
@@ -22,16 +23,20 @@ const AllUsers = () => {
     }
       return (
         <>
-          <h1 className="mt-5">
-            Hello {loginStatus && storedUsername.toLocaleLowerCase()}
-          </h1>
+          <h3 className="mt-5">Users</h3>
           <p onClick={handleLogout} style={{ cursor: "pointer" }}>
-            Logout
+            Hello {loginStatus && storedUsername.toLocaleLowerCase()} | Logout
           </p>
 
-          <ul>
-            {users.map((user) => <li>{ user.email}</li>)}
-         </ul>
+          <div className="row mb-5">
+            <div className="col-sm-5">
+              <SearchBar handleSearch={handleSearch} value={searchText} />
+            </div>
+          </div>
+
+          {users.map((user) => (
+            <HorizontalCard key={user.id} title={user.fullname} />
+          ))}
         </>
       );
 

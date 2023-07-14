@@ -1,23 +1,22 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import useDataFilter from "../hook/DataFilter";
 
 export const UserContext = createContext();
 const UserContextProvider = ({ children }) => {
-  const [fullname, setfullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [zipcode, setZipcode] = useState("");
-  const [gender, setGender] = useState("");
+
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+
+  const [fullname, setfullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [gender, setGender] = useState('');
+  const [searchText, setSearchText] = useState('');
+  
 
   const [users, setUsers] = useState([
-    {
-      id: uuidv4(),
-      fullname: "Kanishka Bandara Kodithuwakku",
-      email: "kanishka@gmail.com",
-      gender: "Male",
-      address: "Badulla",
-      zipcode: "0123",
-    },
     {
       id: uuidv4(),
       fullname: "Kalhari Gallage",
@@ -26,7 +25,33 @@ const UserContextProvider = ({ children }) => {
       address: "Passara",
       zipcode: "0453",
     },
+    {
+      id: uuidv4(),
+      fullname: "Kanishka Bandara Kodithuwakku",
+      email: "kanishka@gmail.com",
+      gender: "Male",
+      address: "Badulla",
+      zipcode: "0123",
+    },
   ]);
+
+  //custom hook
+  const filteredUsers = useDataFilter(users, searchText, "Male");
+ 
+
+    if (filteredUsers.filteredData.length > 0) {
+      console.log("Set users at context");
+      setUsers(filteredUsers.filteredData);
+    }
+ 
+
+  console.log("Context");
+  console.log(filteredUsers);
+  
+
+  const handleSearch = (searchTag) => { 
+    setSearchText(searchTag);
+  }
 
   const handleformSubmit = (e) => {
     e.preventDefault();
@@ -40,16 +65,15 @@ const UserContextProvider = ({ children }) => {
       zipcode: "0258",
       };
       
-      console.log(newUser);
-
     setUsers((prevUsers) => [...prevUsers, newUser]);
-  
-      console.log(users);
   };
 
   const contextValue = {
     users,
     handleformSubmit,
+    handleSearch,
+    setSearchText,
+    searchText,
     fullname,
     setfullname,
     address,
