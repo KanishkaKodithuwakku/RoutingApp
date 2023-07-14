@@ -39,10 +39,12 @@ const UserContextProvider = ({ children }) => {
   const filteredUsers = useDataFilter(users, searchText, "Male");
  
 
-    if (filteredUsers.filteredData.length > 0) {
+  useEffect(() => {
+    if (filteredUsers.length > 0) {
       console.log("Set users at context");
-      setUsers(filteredUsers.filteredData);
+      setUsers(filteredUsers);
     }
+  }, [filteredUsers]);
  
 
   console.log("Context");

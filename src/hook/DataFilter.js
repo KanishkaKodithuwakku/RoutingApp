@@ -24,7 +24,7 @@ const useDataFilter = (data, searchText, type) => {
       setError("No data to filter");
       setFilterdData(data);
     }
-  }, [data, searchText, type]);
+  }, [searchText, type,data]);
 
   return { loading, error, filteredData };
 };
