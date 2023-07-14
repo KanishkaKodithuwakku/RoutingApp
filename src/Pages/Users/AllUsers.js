@@ -42,6 +42,9 @@ const AllUsers = () => {
         localStorage.clear();
         history.push('/login')
   }
+  const handleCardClick = (userId) => {
+    history.push(`/user-details/${userId}`);
+  };
   
   useEffect(() => {
     if (users.length === 0) {
@@ -119,6 +122,7 @@ const AllUsers = () => {
               {...user}
               title={user.fullname}
               image={false}
+              handleCardClick={handleCardClick}
             >
               <DataButton
                 sm={`btn-sm`}

@@ -1,7 +1,14 @@
 import React from "react";
 import avatar from "./avatar.jpg";
 
-const HorizontalCard = ({ title, children, image, gender }) => {
+const HorizontalCard = ({
+  title,
+  children,
+  image,
+  gender,
+  id,
+  handleCardClick,
+}) => {
   const roundDivStyle = {
     borderRadius: "50%",
     backgroundColor: gender === "Female" ? "#FF9B9B" : "#468B97",
@@ -16,7 +23,11 @@ const HorizontalCard = ({ title, children, image, gender }) => {
   };
   return (
     <>
-      <div className="card mb-3" style={{ maxWidth: `540px` }}>
+      <div
+        className="card mb-3"
+        style={{ maxWidth: `540px` }}
+        onClick={(e) => handleCardClick(id)}
+      >
         <div className="row g-0">
           <div className="col-md-2">
             {image ? (

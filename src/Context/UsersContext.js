@@ -19,7 +19,7 @@ const UserContextProvider = ({ children }) => {
 
   const [users, setUsers] = useState([
     {
-      id: uuidv4(),
+      id: 1,
       fullname: "Kalhari Gallage",
       email: "kalhari@gmail.com",
       gender: "Female",
@@ -27,7 +27,7 @@ const UserContextProvider = ({ children }) => {
       zipcode: "0453",
     },
     {
-      id: uuidv4(),
+      id: 2,
       fullname: "Kanishka Bandara Kodithuwakku",
       email: "kanishka@gmail.com",
       gender: "Male",
@@ -59,8 +59,13 @@ const UserContextProvider = ({ children }) => {
   const handleformSubmit = (e) => {
     e.preventDefault();
 
+    if (!fullname || !email || !gender || !address) {
+      toast.error("Please fill in all the required fields.");
+      return;
+    }
+
     const newUser = {
-      id: uuidv4(),
+      id: 3,
       fullname: fullname,
       email: email,
       gender: gender,
