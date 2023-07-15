@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { UserContext } from "../../Context/UsersContext";
 
 const UserDetails = () => {
   const { users } = useContext(UserContext);
-  const { id:userId } = useParams();
+    const { id: userId } = useParams();
+    const history = useHistory();
+    
+       if (!userId || isNaN(Number(userId))) {
+         history.push("/all-users");
+       }
 
   const findUserById = (userId) => {
     const user = users.find((user) => user.id === Number(userId));
