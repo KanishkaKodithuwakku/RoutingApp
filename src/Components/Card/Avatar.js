@@ -1,9 +1,9 @@
 import React from "react";
 
-const Avatar = ({ image, title, type }) => {
+const Avatar = ({ image, title, gender }) => {
   const roundDivStyle = {
     borderRadius: "50%",
-    backgroundColor: type === "F" ? "#FF9B9B" : "#468B97",
+    backgroundColor: gender === "Female" ? "#FF9B9B" : "#468B97",
     color: "#fff",
     textAlign: "center",
     lineHeight: "72px",

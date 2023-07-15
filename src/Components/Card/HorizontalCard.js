@@ -1,5 +1,4 @@
 import React from "react";
-import avatar from "./avatar.jpg";
 import Avatar from "./Avatar";
 
 const HorizontalCard = ({
@@ -10,18 +9,7 @@ const HorizontalCard = ({
   id,
   handleCardClick,
 }) => {
-  const roundDivStyle = {
-    borderRadius: "50%",
-    backgroundColor: gender === "Female" ? "#FF9B9B" : "#468B97",
-    color: "#fff",
-    textAlign: "center",
-    lineHeight: "72px",
-    padding: "8px 17px",
-    fontSize: "53px",
-  };
-  const getAvatarInitial = () => {
-    return title.charAt(0).toUpperCase();
-  };
+  
   return (
     <>
       <div
@@ -30,7 +18,7 @@ const HorizontalCard = ({
         onClick={(e) => handleCardClick(id)}
       >
         <div className="row g-0">
-          <Avatar title={title} type={gender === 'Female'? 'F':''} />
+          <Avatar title={title} gender={gender} />
           <div className="col-md-10">
             <div className="card-body">
               <h5 className="card-title">{title}</h5>
