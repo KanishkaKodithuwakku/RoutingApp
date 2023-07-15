@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../../Context/UsersContext";
 import HorizontalCard from "../../Components/Card/HorizontalCard";
 import SearchBar from "../../Components/Form/SearchBar";
-import DataSelect from "../../Components/Form/DataSelect";
+import DropdownSelect from "../../Components/Form/DropdownSelect";
 import ActionButton from "../../Components/Buttons/ActionButton";
 import Input from "../../Components/Form/Input";
 import Form from "../../Components/Form/Form";
@@ -51,6 +51,12 @@ const AllUsers = () => {
       toast.error("No user. Please create a new user");
     }
   }, [users]);
+
+  const options = [
+    { label: "Male", value: "Male" },
+    { label: "Female", value: "Female" },
+  ];
+
   return (
     <>
       {toastContainer}
@@ -88,14 +94,15 @@ const AllUsers = () => {
             handleOnchange={(e) => setZipcode(e.target.value)}
           />
 
-          <DataSelect
+          <DropdownSelect
             labelText={`Gender`}
             value={gender}
             handleOnchange={(e) => setGender(e.target.value)}
+            options={options}
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
-          </DataSelect>
+          </DropdownSelect>
 
           <ActionButton type={`submit`} btnText={`Submit`} exclass={`mt-4`} />
         </Form>
