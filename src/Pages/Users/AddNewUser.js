@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import DataForm from "../../Components/Form/DataForm";
 import DataInput from "../../Components/Form/DataInput";
-import DataButton from "../../Components/Button/DataButton";
+import ActionButton from "../../Components/Buttons/ActionButton";
 import DataSelect from "../../Components/Form/DataSelect";
 import { UserContext } from "../../Context/UsersContext";
 const AddNewUser = () => {
@@ -60,7 +60,7 @@ const AddNewUser = () => {
           <option value="Female">Female</option>
         </DataSelect>
 
-        <DataButton type={`submit`} btnText={`Submit`} exclass={`mt-4`} />
+        <ActionButton type={`submit`} btnText={`Submit`} exclass={`mt-4`} />
       </DataForm>
     </>
   );

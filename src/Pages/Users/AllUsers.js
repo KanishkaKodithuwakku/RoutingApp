@@ -4,7 +4,7 @@ import { UserContext } from '../../Context/UsersContext';
 import HorizontalCard from '../../Components/Card/HorizontalCard';
 import SearchBar from '../../Components/Form/SearchBar';
 import DataSelect from '../../Components/Form/DataSelect';
-import DataButton from '../../Components/Button/DataButton';
+import ActionButton from "../../Components/Buttons/ActionButton";
 import DataInput from '../../Components/Form/DataInput';
 import DataForm from '../../Components/Form/DataForm';
 
@@ -101,7 +101,7 @@ const AllUsers = () => {
                   <option value="Female">Female</option>
                 </DataSelect>
 
-                <DataButton
+                <ActionButton
                   type={`submit`}
                   btnText={`Submit`}
                   exclass={`mt-4`}
@@ -124,7 +124,7 @@ const AllUsers = () => {
               image={false}
               handleCardClick={handleCardClick}
             >
-              <DataButton
+              <ActionButton
                 sm={`btn-sm`}
                 id={user.id}
                 type={`button`}

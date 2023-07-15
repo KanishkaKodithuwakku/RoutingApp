@@ -1,6 +1,4 @@
 import React from "react";
-import DataButton from "../Button/DataButton";
-import DataInput from "./DataInput";
 
 const DataForm = ({ FormTitle,children, handleSubmit }) => {
    

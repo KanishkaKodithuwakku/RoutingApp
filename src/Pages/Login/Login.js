@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import DataForm from "../../Components/Form/DataForm";
 import DataInput from "../../Components/Form/DataInput";
-import DataButton from "../../Components/Button/DataButton";
+import ActionButton from "../../Components/Buttons/ActionButton";
 import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
@@ -42,7 +42,7 @@ const Login = () => {
           value={password}
         />
 
-        <DataButton btnText={`Login`} exclass={`mt-4`} />
+        <ActionButton btnText={`Login`} exclass={`mt-4`} />
       </DataForm>
     </>
   );
