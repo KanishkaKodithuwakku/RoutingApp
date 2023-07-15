@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import DataForm from "../../Components/Form/DataForm";
+import React, { useContext } from "react";
+import Form from "../../Components/Form/Form";
 import Input from "../../Components/Form/Input";
 import ActionButton from "../../Components/Buttons/ActionButton";
 import DataSelect from "../../Components/Form/DataSelect";
@@ -21,7 +21,7 @@ const AddNewUser = () => {
 
   return (
     <>
-      <DataForm handleSubmit={handleformSubmit}>
+      <Form handleSubmit={handleformSubmit}>
         <Input
           labelText={`Full Name`}
           plaseHolder={`Full Name`}
@@ -59,7 +59,7 @@ const AddNewUser = () => {
         </DataSelect>
 
         <ActionButton type={`submit`} btnText={`Submit`} exclass={`mt-4`} />
-      </DataForm>
+      </Form>
     </>
   );
 };

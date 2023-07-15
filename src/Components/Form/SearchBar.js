@@ -1,10 +1,10 @@
 import React from "react";
-import DataInput from "./Input";
+import Input from "./Input";
 
 const SearchBar = ({ handleSearch, value }) => {
   return (
     <>
-      <DataInput
+      <Input
         handleOnchange={(e) => handleSearch(e.target.value)}
         value={value}
       />

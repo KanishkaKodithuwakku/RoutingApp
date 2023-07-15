@@ -6,7 +6,8 @@ import SearchBar from "../../Components/Form/SearchBar";
 import DataSelect from "../../Components/Form/DataSelect";
 import ActionButton from "../../Components/Buttons/ActionButton";
 import Input from "../../Components/Form/Input";
-import DataForm from "../../Components/Form/DataForm";
+import Form from "../../Components/Form/Form";
+import Container from "../../Components/Layouts/Container ";
 
 const AllUsers = () => {
   const {
@@ -58,74 +59,72 @@ const AllUsers = () => {
         Hello {loginStatus && storedUsername.toLocaleLowerCase()} | Logout
       </p>
 
-      <div className="row">
-        <div className="col-sm-12">
-          <DataForm handleSubmit={handleformSubmit} FormTitle={`Add New User`}>
-            <Input
-              labelText={`Full Name`}
-              plaseHolder={`Full Name`}
-              value={fullname}
-              handleOnchange={(e) => setfullname(e.target.value)}
-            />
-            <Input
-              labelText={`Address`}
-              plaseHolder={`Adderss`}
-              value={address}
-              handleOnchange={(e) => setAddress(e.target.value)}
-            />
-
-            <Input
-              labelText={`Email`}
-              plaseHolder={`Email`}
-              value={email}
-              handleOnchange={(e) => setEmail(e.target.value)}
-            />
-
-            <Input
-              labelText={`ZipCode`}
-              plaseHolder={`ZipCode`}
-              value={zipcode}
-              handleOnchange={(e) => setZipcode(e.target.value)}
-            />
-
-            <DataSelect
-              labelText={`Gender`}
-              value={gender}
-              handleOnchange={(e) => setGender(e.target.value)}
-            >
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </DataSelect>
-
-            <ActionButton type={`submit`} btnText={`Submit`} exclass={`mt-4`} />
-          </DataForm>
-        </div>
-      </div>
-
-      <div className="row mb-5">
-        <div className="col-sm-5">
-          <SearchBar handleSearch={handleSearch} value={searchText} />
-        </div>
-      </div>
-
-      {users.map((user) => (
-        <HorizontalCard
-          key={user.id}
-          {...user}
-          title={user.fullname}
-          image={false}
-          handleCardClick={handleCardClick}
-        >
-          <ActionButton
-            sm={`btn-sm`}
-            id={user.id}
-            type={`button`}
-            btnText={`Delete`}
-            btnType={`danger`}
-            handleOnclick={() => handleDelete(user.id)}
+      <Container title={`Add New Users`}>
+        <Form handleSubmit={handleformSubmit} FormTitle={`Add New User`}>
+          <Input
+            labelText={`Full Name`}
+            plaseHolder={`Full Name`}
+            value={fullname}
+            handleOnchange={(e) => setfullname(e.target.value)}
           />
-        </HorizontalCard>
-      ))}
+          <Input
+            labelText={`Address`}
+            plaseHolder={`Adderss`}
+            value={address}
+            handleOnchange={(e) => setAddress(e.target.value)}
+          />
+
+          <Input
+            labelText={`Email`}
+            plaseHolder={`Email`}
+            value={email}
+            handleOnchange={(e) => setEmail(e.target.value)}
+          />
+
+          <Input
+            labelText={`ZipCode`}
+            plaseHolder={`ZipCode`}
+            value={zipcode}
+            handleOnchange={(e) => setZipcode(e.target.value)}
+          />
+
+          <DataSelect
+            labelText={`Gender`}
+            value={gender}
+            handleOnchange={(e) => setGender(e.target.value)}
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </DataSelect>
+
+          <ActionButton type={`submit`} btnText={`Submit`} exclass={`mt-4`} />
+        </Form>
+      </Container>
+
+      <Container title={`Search Users By name and Gender`}>
+        <SearchBar handleSearch={handleSearch} value={searchText} />
+      </Container>
+
+      <Container title={`All Users`}>
+        {users.map((user) => (
+          <HorizontalCard
+            key={user.id}
+            {...user}
+            title={user.fullname}
+            image={false}
+            handleCardClick={handleCardClick}
+          >
+            <ActionButton
+              sm={`btn-sm`}
+              id={user.id}
+              type={`button`}
+              btnText={`Delete`}
+              btnType={`danger`}
+              handleOnclick={() => handleDelete(user.id)}
+            />
+          </HorizontalCard>
+        ))}
+      </Container>
     </>
   );
 };

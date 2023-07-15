@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import DataForm from "../../Components/Form/DataForm";
+import Form from "../../Components/Form/Form";
 import Input from "../../Components/Form/Input";
 import ActionButton from "../../Components/Buttons/ActionButton";
 import { ToastContainer, toast } from "react-toastify";
@@ -29,7 +29,7 @@ const Login = () => {
   return (
     <>
       <ToastContainer />
-      <DataForm FormTitle={`Login`} handleSubmit={handleLogin}>
+      <Form FormTitle={`Login`} handleSubmit={handleLogin}>
         <Input
           labelText={`Username`}
           handleOnchange={(e) => setUsername(e.target.value)}
@@ -43,7 +43,7 @@ const Login = () => {
         />
 
         <ActionButton btnText={`Login`} exclass={`mt-4`} />
-      </DataForm>
+      </Form>
     </>
   );
 };
