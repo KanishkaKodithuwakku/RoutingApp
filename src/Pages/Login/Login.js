@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import DataForm from "../../Components/Form/DataForm";
-import DataInput from "../../Components/Form/DataInput";
+import Input from "../../Components/Form/Input";
 import ActionButton from "../../Components/Buttons/ActionButton";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -30,12 +30,12 @@ const Login = () => {
     <>
       <ToastContainer />
       <DataForm FormTitle={`Login`} handleSubmit={handleLogin}>
-        <DataInput
+        <Input
           labelText={`Username`}
           handleOnchange={(e) => setUsername(e.target.value)}
           value={username}
         />
-        <DataInput
+        <Input
           labelText={`Password`}
           dataType={`password`}
           handleOnchange={(e) => setPassword(e.target.value)}

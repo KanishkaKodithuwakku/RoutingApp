@@ -1,8 +1,7 @@
-import React from 'react'
-import DataInput from './DataInput';
+import React from "react";
+import DataInput from "./Input";
 
-
-const SearchBar = ({ handleSearch,value }) => {
+const SearchBar = ({ handleSearch, value }) => {
   return (
     <>
       <DataInput

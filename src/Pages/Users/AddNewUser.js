@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
 import DataForm from "../../Components/Form/DataForm";
-import DataInput from "../../Components/Form/DataInput";
+import Input from "../../Components/Form/Input";
 import ActionButton from "../../Components/Buttons/ActionButton";
 import DataSelect from "../../Components/Form/DataSelect";
 import { UserContext } from "../../Context/UsersContext";
 const AddNewUser = () => {
-
   const {
     handleformSubmit,
     fullname,
@@ -20,31 +19,30 @@ const AddNewUser = () => {
     setEmail,
   } = useContext(UserContext);
 
-
   return (
     <>
       <DataForm handleSubmit={handleformSubmit}>
-        <DataInput
+        <Input
           labelText={`Full Name`}
           plaseHolder={`Full Name`}
           value={fullname}
           handleOnchange={(e) => setfullname(e.target.value)}
         />
-        <DataInput
+        <Input
           labelText={`Address`}
           plaseHolder={`Adderss`}
           value={address}
           handleOnchange={(e) => setAddress(e.target.value)}
         />
 
-        <DataInput
+        <Input
           labelText={`Email`}
           plaseHolder={`Email`}
           value={email}
           handleOnchange={(e) => setEmail(e.target.value)}
         />
 
-        <DataInput
+        <Input
           labelText={`ZipCode`}
           plaseHolder={`ZipCode`}
           value={zipcode}
