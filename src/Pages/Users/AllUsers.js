@@ -99,10 +99,7 @@ const AllUsers = () => {
             value={gender}
             handleOnchange={(e) => setGender(e.target.value)}
             options={options}
-          >
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </DropdownSelect>
+          />
 
           <ActionButton type={`submit`} btnText={`Submit`} exclass={`mt-4`} />
         </Form>
