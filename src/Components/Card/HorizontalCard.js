@@ -4,7 +4,6 @@ import Avatar from "./Avatar";
 const HorizontalCard = ({
   title,
   children,
-  image,
   gender,
   id,
   handleCardClick,

@@ -1,34 +1,27 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../Context/UsersContext";
 import HorizontalCard from "../../Components/Card/HorizontalCard";
 import SearchBar from "../../Components/Form/SearchBar";
 import DropdownSelect from "../../Components/Form/DropdownSelect";
 import ActionButton from "../../Components/Buttons/ActionButton";
+import ActionDelete from "../../Components/Buttons/ActionDelete";
 import Input from "../../Components/Form/Input";
 import Form from "../../Components/Form/Form";
 import Container from "../../Components/Layouts/Container ";
+import { ToastContainer, toast } from "react-toastify";
+import useDataFilter from "../../hook/DataFilter";
+import { v4 as uuidv4 } from "uuid";
 
 const AllUsers = () => {
-  const {
-    users,
-    handleformSubmit,
-    handleSearch,
-    searchText,
-    fullname,
-    setfullname,
-    address,
-    setAddress,
-    email,
-    setEmail,
-    zipcode,
-    setZipcode,
-    gender,
-    setGender,
-    handleDelete,
-    toastContainer,
-    toast,
-  } = useContext(UserContext);
+  const { users, setUsers } = useContext(UserContext);
+
+  const [fullname, setfullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [gender, setGender] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   const history = useHistory();
   const storedUsername = localStorage.getItem("username");
@@ -42,9 +35,45 @@ const AllUsers = () => {
     localStorage.clear();
     history.push("/login");
   };
+
+  const handleformSubmit = (e) => {
+    e.preventDefault();
+
+    if (!fullname || !email || !gender || !address) {
+      toast.error("Please fill in all the required fields.");
+      return;
+    }
+
+    const newUser = {
+      id: uuidv4(),
+      fullname: fullname,
+      email: email,
+      gender: gender,
+      address: address,
+      zipcode: "0258",
+    };
+
+    setUsers((prevUsers) => [...prevUsers, newUser]);
+    toast.success("New User Added");
+  };
+
+  const handleSearch = (searchTag) => {
+    setSearchText(searchTag);
+  };
   const handleCardClick = (userId) => {
     history.push(`/user-details/${userId}`);
   };
+  const handleDelete = (id) => {
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+    toast.warning("User deleted successfully!");
+  };
+
+  const filteredUsers = useDataFilter(users, searchText, "Male");
+  useEffect(() => {
+    if (filteredUsers.length > 0) {
+      setUsers(filteredUsers);
+    }
+  }, [filteredUsers]);
 
   useEffect(() => {
     if (users.length === 0) {
@@ -59,7 +88,7 @@ const AllUsers = () => {
 
   return (
     <>
-      {toastContainer}
+      <ToastContainer />
       <h3 className="mt-5">Users</h3>
       <p onClick={handleLogout} style={{ cursor: "pointer" }}>
         Hello {loginStatus && storedUsername.toLocaleLowerCase()} | Logout
@@ -101,7 +130,12 @@ const AllUsers = () => {
             options={options}
           />
 
-          <ActionButton type={`submit`} btnText={`Submit`} exclass={`mt-4`} />
+          <ActionButton
+            type={`submit`}
+            btnText={`Submit`}
+            exclass={`mt-4`}
+            handleOnClick={handleformSubmit}
+          />
         </Form>
       </Container>
 
@@ -118,13 +152,13 @@ const AllUsers = () => {
             image={false}
             handleCardClick={handleCardClick}
           >
-            <ActionButton
+            <ActionDelete
               sm={`btn-sm`}
               id={user.id}
               type={`button`}
               btnText={`Delete`}
               btnType={`danger`}
-              handleOnclick={() => handleDelete(user.id)}
+              handleOnClick={() => handleDelete(user.id)}
             />
           </HorizontalCard>
         ))}

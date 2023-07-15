@@ -1,10 +1,10 @@
 import React from "react";
 import classNames from "classnames";
 
-const ActionButton = ({
+const ActionDelete = ({
   id,
   btnText,
-  btnType = "primary",
+  btnType = "danger",
   type = "submit",
   handleOnClick,
   exclass,
@@ -16,14 +16,18 @@ const ActionButton = ({
     "mb-3 mt-4",
     exclass,
     sm
-  );
+    );
+    
+    const handleClick = () => {
+      handleOnClick(id);
+    };
 
   return (
     <div className="col-auto">
       <button
         type={type}
         className={buttonClasses}
-        onClick={(e) => handleOnClick(e)}
+        onClick={handleClick}
       >
         {btnText}
       </button>
@@ -31,4 +35,4 @@ const ActionButton = ({
   );
 };
 
-export default ActionButton;
+export default ActionDelete;
